@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archivo Salus</title>
+</head>
+<body>
+    <a href="index.html">Volver</a>
+    <p></p>
+    <a href="post.html" id="ant">Anterior</a> <a href="post.html" id="pos">Siguiente</a>
+    <h1 id="title"></h1>
+    <h2 id="published"></h2>
+    <div id="content"></div>
+    <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = parseInt(urlParams.get('id'));
+    document.getElementById("ant").href = "post.html?id=" + (id+1);
+    document.getElementById("pos").href = "post.html?id=" + (id-1);
+
+    fetch('posts.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(jsonData => {
+            const item = jsonData.items[id];
+            if (item) {
+                document.getElementById("title").textContent = item.title;
+                document.getElementById("published").textContent = item.published;
+                document.getElementById("content").innerHTML = item.content;
+            } else {
+                document.getElementById("title").textContent = "Publicación no existe";
+            }
+        });
+    </script>
+</body>
+</html>
