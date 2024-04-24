@@ -13,27 +13,17 @@
     <div id="display"></div>
 
     <script>
-    // Fetching the JSON file
     fetch('posts.json')
       .then(response => response.json())
       .then(data => {
-        // Sorting the blog posts based on their published date
         const sortedPosts = data.items.sort((a, b) => new Date(a.published) - new Date(b.published));
-
-        // Creating an HTML list to display the blog posts
         const list = document.createElement('ul');
-
-        // Loop through sortedPosts and create list items
         sortedPosts.forEach((post,i) => {
           const listItem = document.createElement('li');
-          const postDate = new Date(post.published).toLocaleDateString(); // Format the date
-
-          // Add post title and formatted date to the list item
+          const postDate = new Date(post.published).toLocaleDateString();
           listItem.innerHTML = `<a href="post.html?id=${sortedPosts.length-i-1}">${post.title}</a> - ${postDate}`;
           list.appendChild(listItem);
         });
-
-        // Display the list inside the div with id "display"
         document.getElementById('display').appendChild(list);
       })
       .catch(error => console.error('Error fetching JSON:', error));
