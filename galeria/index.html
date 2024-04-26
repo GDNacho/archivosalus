@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Archivo Salus</title>
+</head>
+<body>
+<h1>Galería</h1>
+<div id="imageList"></div>
+
+<script>
+// Function to fetch image names from the server
+function fetchImageNames() {
+    return new Promise((resolve, reject) => {
+        // You can replace this URL with your server endpoint that serves image names
+        fetch('/get_image_names')
+            .then(response => response.json())
+            .then(data => resolve(data))
+            .catch(error => reject(error));
+    });
+}
+
+// Function to create <a> tags for each image
+function createImageLinks(imageNames) {
+    const imageListContainer = document.getElementById('imageList');
+    imageNames.forEach(imageName => {
+        const imageLink = document.createElement('a');
+        imageLink.href = imageName; // Assuming image names are URLs
+        imageLink.textContent = imageName.split('/').pop(); // Displaying only the image filename
+        imageLink.innerHTML += '<br>'; // Adding line break for better readability
+        imageListContainer.appendChild(imageLink);
+    });
+}
+
+// Fetch image names and create <a> tags when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    fetchImageNames()
+        .then(imageNames => createImageLinks(imageNames))
+        .catch(error => console.error('Error fetching image names:', error));
+});
+</script>
+</body>
+</html>
