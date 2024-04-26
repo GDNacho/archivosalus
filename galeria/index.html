@@ -6,39 +6,23 @@
 <title>Archivo Salus</title>
 </head>
 <body>
-<h1>Galería</h1>
-<div id="imageList"></div>
-
-<script>
-// Function to fetch image names from the server
-function fetchImageNames() {
-    return new Promise((resolve, reject) => {
-        // You can replace this URL with your server endpoint that serves image names
-        fetch('/get_image_names')
-            .then(response => response.json())
-            .then(data => resolve(data))
-            .catch(error => reject(error));
-    });
-}
-
-// Function to create <a> tags for each image
-function createImageLinks(imageNames) {
-    const imageListContainer = document.getElementById('imageList');
-    imageNames.forEach(imageName => {
-        const imageLink = document.createElement('a');
-        imageLink.href = imageName; // Assuming image names are URLs
-        imageLink.textContent = imageName.split('/').pop(); // Displaying only the image filename
-        imageLink.innerHTML += '<br>'; // Adding line break for better readability
-        imageListContainer.appendChild(imageLink);
-    });
-}
-
-// Fetch image names and create <a> tags when the page loads
-document.addEventListener('DOMContentLoaded', () => {
-    fetchImageNames()
-        .then(imageNames => createImageLinks(imageNames))
-        .catch(error => console.error('Error fetching image names:', error));
-});
-</script>
+    <a href="../salus1970.html">Atrás</a>
+    <h1>Galería 1970</h1>
+    <h3>Fotos tomadas por Miguel Molinari, El AreA</h3>
+    <p><a href="https://www.el-area.com">Sitio Web El AreA</a></p>
+    <p><img src="Acuerdo.jpeg" /></p>
+    <p><img src="Aplazado el Uruguayo.jpeg" /></p>
+    <p><img src="Ascenso Lo Jugaran 13 Instituciones.jpeg" /></p>
+    <p><img src="Aplazado el Uruguayo.jpeg" /></p>
+    <p><img src="Fecha 1 Series.jpeg" /></p>
+    <p><img src="Fecha 2 Series.jpeg" /></p>
+    <p><img src="Fecha 4 Series.jpeg" /></p>
+    <p><img src="Fecha 1 Liguilla Final.jpeg" /></p>
+    <p><img src="Villa Teresa 1-1 Salus.jpeg" /></p>
+    <p><img src="Fecha 3 Liguilla.jpeg" /></p>
+    <p><img src="Salus es Lider.jpeg" /></p>
+    <p><img src="Total Incognita Cuando Falta Jugar Una Fecha.jpeg" /></p>
+    <p><img src="De Ganar, Salus Pasa a La Extra.jpeg" /></p>
+    <p><img src="Salus es Campeón y Asciende a la Extra.jpeg" /></p>
 </body>
 </html>
